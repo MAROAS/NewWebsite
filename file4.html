@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DODO Travel - Long Distance Rides Australia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0fb4 0%, #1a2fc4 100%);
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #fff;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .back-btn {
+            background: #ff6600;
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 1.5rem 0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 102, 0, 0.3);
+        }
+
+        .back-btn:hover {
+            background: #ff7700;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(255, 102, 0, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1a2fc4 0%, #0a0fb4 100%);
+            color: #fff;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(10, 15, 180, 0.3);
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff6600;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #0a0fb4;
+            margin-top: 0;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #ff6600;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .feature-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-card ul li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .feature-card ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .info-section {
+            background: #fff;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h2 {
+            color: #0a0fb4;
+            border-bottom: 3px solid #ff6600;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section ul li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .info-section ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #ff6600 0%, #ff7700 100%);
+            color: #fff;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .pricing-section h2 {
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 3px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card h3 {
+            color: #0a0fb4;
+            margin-top: 0;
+        }
+
+        .pricing-card .distance {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6600;
+            margin: 1rem 0;
+        }
+
+        .requirements-section {
+            background: #f9f9f9;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            border: 2px solid #0a0fb4;
+        }
+
+        .requirements-section h2 {
+            color: #0a0fb4;
+            margin-top: 0;
+        }
+
+        .requirements-section h3 {
+            color: #ff6600;
+            margin-top: 1.5rem;
+        }
+
+        .requirements-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-section ul li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .requirements-section ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .destination-card {
+            background: linear-gradient(135deg, #0a0fb4 0%, #1a2fc4 100%);
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(10, 15, 180, 0.4);
+        }
+
+        .destination-card h4 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .destination-card p {
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #ff6600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff7700;
+        }
+
+        .cta-button {
+            background: #ff6600;
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 102, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #ff7700;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 102, 0, 0.4);
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 5px solid #0a0fb4;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .highlight-box h3 {
+            color: #0a0fb4;
+            margin-top: 0;
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .compare-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .compare-item h4 {
+            color: #0a0fb4;
+            margin-top: 0;
+        }
+
+        .compare-item.highlighted {
+            border-color: #ff6600;
+            background: #fff3e0;
+        }
+
+        .stats-section {
+            background: #fff;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6600;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🛣️ DODO Travel </h1>
+    <p>Long Distance Rides Made Easy</p>
+    <p>Affordable, comfortable travel across Australia</p>
+</header>
+
+<div class="container">
+    <a href="../dodo.html" class="back-btn">← Back to Main Page</a>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h2>Travel Further for Less</h2>
+        <p>Long-distance rides at competitive rates</p>
+        <p><strong>Interstate Travel | Airport Transfers | Regional Trips | Up to 4 Passengers</strong></p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>🌏 Long Distance</h3>
+            <p>Perfect for trips over 50km. Travel between cities, to regional areas, or interstate with ease and comfort.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💰 Better Value</h3>
+            <p>Special long-distance rates that save you money. Often more affordable than train or bus for door-to-door service.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🎯 Ideal For</h3>
+            <ul>
+                <li>Interstate travel</li>
+                <li>Airport transfers</li>
+                <li>Regional business trips</li>
+                <li>Family visits</li>
+                <li>Weekend getaways</li>
+                <li>University commutes</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>🚗 Comfortable Rides</h3>
+            <p>Sit back and relax in spacious vehicles with experienced drivers. Enjoy the journey without the stress of driving.</p>
+        </div>
+    </div>
+
+    <!-- Popular Routes -->
+    <div class="info-section">
+        <h2>Popular Travel Routes</h2>
+        <p>DODO Travel serves these popular long-distance routes and many more across Australia:</p>
+        
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <h4>Sydney ↔ Melbourne</h4>
+                <p>~880 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Melbourne ↔ Adelaide</h4>
+                <p>~730 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Brisbane ↔ Gold Coast</h4>
+                <p>~80 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Sydney ↔ Canberra</h4>
+                <p>~290 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Perth ↔ Fremantle</h4>
+                <p>~25 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Adelaide ↔ Barossa</h4>
+                <p>~70 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Melbourne ↔ Geelong</h4>
+                <p>~75 km</p>
+            </div>
+            <div class="destination-card">
+                <h4>Sydney ↔ Newcastle</h4>
+                <p>~165 km</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <h2 style="color: #0a0fb4; text-align: center;">DODO Travel by the Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Long Distance Trips</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.8★</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Cities Connected</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">Average Savings</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="info-section">
+        <h2>How DODO Travel Works</h2>
+        <ol style="font-size: 1.1rem; line-height: 2;">
+            <li><strong>Book in Advance:</strong> Schedule your long-distance trip up to 30 days ahead</li>
+            <li><strong>Get Matched:</strong> We'll connect you with an experienced long-distance driver</li>
+            <li><strong>Confirm Details:</strong> Review your trip details, fare, and driver information</li>
+            <li><strong>Travel Comfortably:</strong> Relax and enjoy your journey in a comfortable vehicle</li>
+            <li><strong>Arrive Refreshed:</strong> Reach your destination without the stress of driving</li>
+        </ol>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="pricing-section">
+        <h2>Competitive Long-Distance Pricing</h2>
+        <p>Save money on your long trips with DODO Travel's special rates</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Short Haul</h3>
+                <div class="distance">50-150km</div>
+                <p>Regional trips and nearby cities</p>
+                <p><strong>Best for:</strong> Day trips, airport runs</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Medium Distance</h3>
+                <div class="distance">150-400km</div>
+                <p>Interstate and intercity travel</p>
+                <p><strong>Best for:</strong> Weekend trips, business travel</p>
+            </div>
+            <div class="pricing-card">
+                <h3>Long Haul</h3>
+                <div class="distance">400km+</div>
+                <p>Major interstate journeys</p>
+                <p><strong>Best for:</strong> Relocations, extended trips</p>
+            </div>
+        </div>
+        
+        <p style="margin-top: 2rem;">All trips include:</p>
+        <ul style="list-style: none; padding: 0; text-align: center;">
+            <li>✓ Fuel costs included</li>
+            <li>✓ No hidden fees</li>
+            <li>✓ Flexible luggage allowance</li>
+            <li>✓ Rest stop breaks</li>
+        </ul>
+    </div>
+
+    <!-- Highlight Box -->
+    <div class="highlight-box">
+        <h3>💡 Smart Travel Tips</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.3rem 0;">✓ Book at least 24-48 hours in advance for best availability</li>
+            <li style="padding: 0.3rem 0;">✓ Travel during off-peak times for better rates</li>
+            <li style="padding: 0.3rem 0;">✓ Share rides with others heading the same direction</li>
+            <li style="padding: 0.3rem 0;">✓ Pack light refreshments for comfort during the journey</li>
+            <li style="padding: 0.3rem 0;">✓ Confirm pickup location and time with your driver</li>
+        </ul>
+    </div>
+
+    <!-- Service Comparison -->
+    <div class="info-section">
+        <h2>Why Choose DODO Travel?</h2>
+        <div class="comparison-box">
+            <div class="compare-item highlighted">
+                <h4>DODO Travel</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✓ Door-to-door service</li>
+                    <li>✓ Flexible departure times</li>
+                    <li>✓ Private or shared options</li>
+                    <li>✓ Luggage included</li>
+                    <li>✓ No station hassles</li>
+                    <li>✓ Direct routes</li>
+                </ul>
+            </div>
+            <div class="compare-item">
+                <h4>Train/Bus</h4>
+                <ul style="list-style: none; padding: 0; color: #999;">
+                    <li>✗ Station to station only</li>
+                    <li>✗ Fixed schedules</li>
+                    <li>✗ Shared with many passengers</li>
+                    <li>✗ Extra luggage fees</li>
+                    <li>✗ Multiple stops</li>
+                    <li>✗ Indirect routes</li>
+                </ul>
+            </div>
+            <div class="compare-item">
+                <h4>Car Rental</h4>
+                <ul style="list-style: none; padding: 0; color: #999;">
+                    <li>✗ You drive yourself</li>
+                    <li>✗ Fuel costs extra</li>
+                    <li>✗ Return fees</li>
+                    <li>✗ Insurance costs</li>
+                    <li>✗ Parking challenges</li>
+                    <li>✗ Fatigue on long trips</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- What's Included -->
+    <div class="info-section">
+        <h2>What's Included in Your Trip</h2>
+        <ul>
+            <li><strong>Professional Driver:</strong> Experienced, licensed drivers familiar with long-distance routes</li>
+            <li><strong>Comfortable Vehicle:</strong> Well-maintained sedans or SUVs for a smooth ride</li>
+            <li><strong>Fuel Costs:</strong> All fuel expenses included in your fare</li>
+            <li><strong>Luggage Space:</strong> Ample room for suitcases and bags</li>
+            <li><strong>Rest Stops:</strong> Scheduled breaks on longer journeys</li>
+            <li><strong>GPS Navigation:</strong> Optimal routes for fastest, safest travel</li>
+            <li><strong>24/7 Support:</strong> Help available throughout your journey</li>
+            <li><strong>Insurance:</strong> Comprehensive coverage during your trip</li>
+            <li><strong>Flexibility:</strong> Minor route adjustments possible upon request</li>
+        </ul>
+    </div>
+
+    <!-- Driver Requirements -->
+    <div class="requirements-section">
+        <h2>Drive Long Distance with DODO Travel</h2>
+        <p>Interested in becoming a DODO Travel driver? Long-distance driving can be rewarding and lucrative. Here's what you need:</p>
+
+        <h3>Driver Requirements</h3>
+        <ul>
+            <li>Hold a valid unrestricted Australian driver's licence (minimum 2 years experience)</li>
+            <li>Be at least 25 years of age (due to insurance requirements)</li>
+            <li>Be an Australian citizen, permanent resident, or have working rights in Australia</li>
+            <li>Have an ABN and be GST-registered</li>
+            <li>Pass comprehensive background checks (criminal record and driving history)</li>
+            <li>Hold necessary state-specific commercial driving accreditations</li>
+            <li>Maintain appropriate commercial/long-distance insurance coverage</li>
+            <li>Complete DODO long-distance driver training program</li>
+            <li>Have excellent knowledge of Australian highways and regional routes</li>
+            <li>Possess strong customer service and communication skills</li>
+            <li>Be comfortable with overnight stays for interstate trips (accommodations provided)</li>
+        </ul>
+
+        <h3>Vehicle Requirements</h3>
+        <ul>
+            <li>Vehicle must seat 4-5 passengers comfortably</li>
+            <li>No older than 8 years for long-distance service</li>
+            <li>Must be in excellent mechanical condition - safety is paramount</li>
+            <li>Pass comprehensive vehicle inspections</li>
+            <li>Registered as a commercial passenger vehicle</li>
+            <li>Equipped with proper commercial insurance for interstate travel</li>
+            <li>Air conditioning and heating must be fully functional</li>
+            <li>Large trunk space for passenger luggage</li>
+            <li>GPS navigation system required</li>
+            <li>Emergency equipment (first aid kit, warning triangles, etc.)</li>
+        </ul>
+
+        <h3>Preferred Vehicles for Long Distance</h3>
+        <ul>
+            <li>Toyota Camry, Corolla (hybrid models preferred)</li>
+            <li>Mazda 6</li>
+            <li>Honda Accord</li>
+            <li>Hyundai Sonata</li>
+            <li>Volkswagen Passat</li>
+            <li>Subaru Outback, Legacy</li>
+            <li>Toyota RAV4, Kluger</li>
+            <li>Mazda CX-5, CX-9</li>
+        </ul>
+
+        <h3>Additional Qualifications (Preferred)</h3>
+        <ul>
+            <li>Previous experience with long-distance driving or rideshare services</li>
+            <li>Clean driving record with no major violations</li>
+            <li>First aid certification</li>
+            <li>Defensive driving course completion</li>
+            <li>Excellent punctuality and reliability record</li>
+        </ul>
+
+        <p style="margin-top: 2rem;"><a href="../file1/file.html" style="color: #0a0fb4; font-weight: bold;">→ View Detailed State-by-State Requirements</a></p>
+    </div>
+
+    <!-- Driver Benefits -->
+    <div class="info-section">
+        <h2>Benefits of Driving DODO Travel</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>💵 Higher Earnings</h3>
+                <p>Long-distance trips offer significantly higher fares. Many drivers earn $500-$1500+ per interstate trip.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🗓️ Plan Ahead</h3>
+                <p>Pre-scheduled trips mean you know your schedule in advance. Plan your week around confirmed bookings.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🏨 Accommodations</h3>
+                <p>Overnight stays for multi-day trips are covered. Rest comfortably between long drives.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>⛽ Fuel Reimbursement</h3>
+                <p>All fuel costs for trips are reimbursed. Travel without worrying about fuel expenses.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎁 Bonuses</h3>
+                <p>Earn completion bonuses, loyalty rewards, and customer satisfaction incentives.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📞 Dedicated Support</h3>
+                <p>24/7 driver support specifically for long-distance trips. Help is always available on the road.</p>
+            </div>
+        </div>
+
+        <h3 style="color: #0a0fb4; margin-top: 2rem;">Additional Driver Perks:</h3>
+        <ul>
+            <li>Priority access to high-value trips</li>
+            <li>Flexible scheduling - choose which trips you want</li>
+            <li>Return trip guarantees (if available)</li>
+            <li>Premium driver status for top performers</li>
+            <li>Access to exclusive partner discounts (fuel, accommodation, meals)</li>
+            <li>Vehicle maintenance support and discounts</li>
+            <li>Weekly payouts with fast processing</li>
+        </ul>
+    </div>
+
+    <!-- Safety Section -->
+    <div class="info-section">
+        <h2>Safety on Long Distance Trips</h2>
+        <p>DODO Travel prioritizes safety for both passengers and drivers:</p>
+        <ul>
+            <li><strong>Real-time Tracking:</strong> All trips tracked with GPS monitoring</li>
+            <li><strong>Regular Check-ins:</strong> Automated safety check-ins during long trips</li>
+            <li><strong>Emergency Support:</strong> Direct connection to emergency services</li>
+            <li><strong>Driver Fatigue Management:</strong> Mandatory rest breaks for trips over 3 hours</li>
+            <li><strong>Vehicle Inspections:</strong> Regular safety inspections for long-distance vehicles</li>
+            <li><strong>Share Trip Details:</strong> Passengers can share journey details with contacts</li>
+            <li><strong>Two-way Ratings:</strong> Accountability for drivers and passengers</li>
+            <li><strong>24/7 Incident Response:</strong> Dedicated team for emergency situations</li>
+        </ul>
+    </div>
+
+    <!-- CTA Section -->
+    <div style="text-align: center; margin: 3rem 0; background: linear-gradient(135deg, #0a0fb4 0%, #1a2fc4 100%); padding: 3rem; border-radius: 15px; color: #fff;">
+        <h2 style="margin-top: 0;">Ready to Travel or Drive?</h2>
+        <p style="font-size: 1.1rem;">Book your next long-distance trip or start earning as a DODO Travel driver</p>
+        <a href="dodo.html" class="cta-button" style="background: #fff; color: #0a0fb4;">Call to Book a Trip</a>
+        <a href="dodo.html" class="cta-button">Become a Driver</a>
+    </div>
+</div>
+
+<footer>
+    <p>© DODO Australia | DODO Travel - Long Distance Service</p>
+    <p>
+        <a href="../dodo.html">← Main Page</a> | 
+        <a href="file0.html">Driver Requirements</a> | 
+        <a href="file5.html">DODO Max</a> | 
+        <a href="file3.html">DODO Express</a>
+    </p>
+</footer>
+
+</body>
+</html>
