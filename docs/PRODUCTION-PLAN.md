@@ -29,6 +29,11 @@ dashboard (Project -> General) that the project is "Paused" and that backups are
    guard (refuse staging id 7678069749886157684; require P0 id) instead of the staging guard, rehearse on the
    restored copy, apply; deploy the four functions; set the production secrets (staging runbook section 8, inbox
    contact@dodotransport.com.au); add a production Resend webhook with its own secret.
+   Prepared, not run: `supabase/production-migrations/` (atomic, guarded, 5/5 local), `deploy/deploy-production-functions.ps1`
+   and `deploy/set-production-secrets.ps1` (refuse anything but project "DODO" when ACTIVE_HEALTHY, refuse non-company
+   inboxes, need a typed confirmation).
+   Then the production form tests (one test submission per form, with approval). Only when they PASS: set the three
+   switches in `site-config.js` to "on" AND `productionFormsVerified: true`. Until then the website shows the phone number.
 6. **Website publication**: only after 5 passes and the domain/email fixes are done (see DNS checklist).
 
 ## 3. What stays blocked until then

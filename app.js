@@ -68,9 +68,18 @@ function showFormUnavailable(formEl, feedbackId, message) {
   if (fb) fb.setAttribute("role", "status");
 }
 
+// A form opens only when its switch is exactly "on" (a missing or misspelt switch keeps it closed).
+// Against the production backend it also needs productionFormsVerified: true, which is set only after
+// the production form tests pass. Until then visitors see the phone number, never a failing form.
+const PRODUCTION_SUPABASE_URL = "https://gobsccsryhavpwqpiujz.supabase.co";
+function formEnabled(switchName) {
+  if ((SITE_CONFIG.forms || {})[switchName] !== "on") return false;
+  return SUPABASE_URL.replace(/\/+$/, "") !== PRODUCTION_SUPABASE_URL || SITE_CONFIG.productionFormsVerified === true;
+}
+
 function wireSecureForm(formEl, opts) {
   if (!formEl) return;
-  if (((SITE_CONFIG.forms || {})[opts.switchName]) === "off") {
+  if (!formEnabled(opts.switchName)) {
     showFormUnavailable(formEl, opts.feedbackId, opts.unavailableText);
     return;
   }

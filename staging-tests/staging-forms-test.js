@@ -119,7 +119,7 @@ async function browser(siteDir) {
   const http = require("http"), fs = require("fs"), path = require("path");
   const puppeteer = require("puppeteer-core");
   const SITE = path.resolve(siteDir);
-  const inject = `<script>window.DODO_SITE_CONFIG={supabaseUrl:"https://${STAGING_REF}.supabase.co",supabaseAnonKey:${JSON.stringify(KEY)}};</script>`;
+  const inject = `<script>window.DODO_SITE_CONFIG={supabaseUrl:"https://${STAGING_REF}.supabase.co",supabaseAnonKey:${JSON.stringify(KEY)},forms:{booking:"on",contact:"on",driverApplication:"on"}};</script>`;
   const server = http.createServer((req, res) => {
     const f = path.join(SITE, decodeURIComponent(req.url.split("?")[0]));
     if (!f.startsWith(SITE) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }

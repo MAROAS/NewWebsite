@@ -20,6 +20,7 @@ migrations applied, the real Edge Function code under Node with Resend faked, an
 | Email delivery to a real inbox (<staging test inbox>) | **PASS**: owner confirmed all 22 received; driver confirmation checked in person (sender, reference, content, staging warning, support number) |
 | Staging: email-failure / recovery (amber message) | Not run on staging (needs a temporary sender swap); PASS locally |
 | Staging: Resend webhook (delivered/bounced events) | Not set up; optional, post-launch |
+| Launch gate (25 Oct): published site-config.js keeps all three forms closed; "on" without productionFormsVerified and misspelt switches stay closed; phone number shown | **PASS 6/6** (full site suite now 67/67; forms 121/121; booking 51/51) |
 | Rider / Driver / Admin app test suites | Not run: no app code was changed; the website tables are used by no app (checked on all three release branches) |
 
 ## Coverage by requirement
