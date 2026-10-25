@@ -13,7 +13,7 @@ DNS host: GoDaddy (ns25/ns26.domaincontrol.com). NOTHING HAS BEEN CHANGED. Every
 | TXT @ | NETORG19606353.onmicrosoft.com; google-site-verification=… | Leftover verification strings; harmless. |
 | TXT _dmarc | v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net; | Fine. Reports go to GoDaddy's DMARC service. |
 | TXT resend._domainkey | p=MIGfMA0… (Resend DKIM key, 218 chars) | Present. Whether it matches the key Resend expects is only visible in Resend -> Domains. |
-| CNAME send | send.forge.rmta.net (that host publishes MX feedback.forge.rmta.net and SPF ip4:52.3.252.119 ip4:44.222.39.36 ip4:199.249.231.0/24 ~all) | **Not Resend's records** (Resend's are an amazonses MX and `include:amazonses.com` SPF). Owner of rmta.net unknown (possibly the same famous.ai setup). A CNAME blocks adding Resend's records at `send`. |
+| CNAME send (KEEP) | send.forge.rmta.net (that host publishes MX feedback.forge.rmta.net and SPF ip4:52.3.252.119 ip4:44.222.39.36 ip4:199.249.231.0/24 ~all) | **Not Resend's records** (Resend's are an amazonses MX and `include:amazonses.com` SPF). Owner of rmta.net unknown (possibly the same famous.ai setup). A CNAME blocks adding Resend's records at `send`. |
 | selector1/selector2._domainkey | none | Microsoft 365 DKIM not enabled. |
 | autodiscover | none | Outlook auto-configuration missing. |
 | AAAA @ / CAA | none | Optional. |
@@ -63,7 +63,8 @@ Senders: website forms `noreply@dodotransport.com.au` (WEBSITE_FROM_EMAIL); admi
 DMARC: Resend mail passes DMARC through its DKIM signature (d=dodotransport.com.au, relaxed alignment).
 
 ## 5. Optional later
-- `send` CNAME: identify who uses send.forge.rmta.net (check the GoDaddy DNS change history and famous.ai). If it is a
-  famous.ai leftover, remove it with approval.
+- `send` CNAME (send.forge.rmta.net): **keep it.** Resend reports the domain verified and staging emails were delivered
+  (25 Oct), so this record may be part of the working sending setup. Before any change, check in Resend -> Domains which
+  records it verified.
 - DMARC reports: add a rua address you actually read before tightening to p=reject.
 - CAA: allow only the certificate authorities in use (GitHub Pages uses Let's Encrypt).
