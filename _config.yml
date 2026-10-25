@@ -1,0 +1,8 @@
+# GitHub Pages build settings. Only the website files are published:
+# backend code, scripts, docs and tests stay in the repository but are not served on dodotransport.com.au.
+exclude:
+  - supabase
+  - deploy
+  - docs
+  - config
+  - staging-tests
