@@ -1,64 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You – DODO Transport</title>
-
+  <meta name="theme-color" content="#ff6a00">
+  <link rel="icon" href="logoD.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #333;
+    body { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--bg-soft); }
+    .thanks { max-width: 480px; width: 100%; text-align: center; }
+    .thanks img { height: 40px; margin: 0 auto 28px; }
+    .thanks .form-card { padding: 44px 32px; }
+    .tick {
+      width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 50%; background: var(--green-tint); color: var(--green);
+      display: grid; place-items: center; font-size: 1.8rem; font-weight: 900;
     }
-
-    .container {
-      max-width: 600px;
-      margin: 80px auto;
-      background: #dba505;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    h1 {
-      color: #1a73e8;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .home-btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 12px 24px;
-      background: #1a73e8;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: 0.2s ease;
-    }
-
-    .home-btn:hover {
-      background: #0f5ac6;
-    }
+    .thanks h1 { font-size: 1.9rem; margin-bottom: 10px; }
+    .thanks p { color: var(--muted); }
+    .thanks .hero-actions { justify-content: center; margin-top: 28px; }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>Thank You!</h1>
-    <p>Your message has been successfully sent to DODO Transport.</p>
-    <p>Our team will get back to you shortly.</p>
-
-    <a href="https://www.dodotransport.com.au" class="home-btn">Return to Home</a>
-  </div>
+  <main class="thanks">
+    <img src="logo.png" alt="DODO Transport">
+    <div class="form-card">
+      <div class="tick">✓</div>
+      <h1>Thank you!</h1>
+      <p>Your message has been sent to DODO Transport. Our team will get back to you shortly.</p>
+      <div class="hero-actions">
+        <a href="https://www.dodotransport.com.au" class="btn btn-primary">Return to home</a>
+        <a href="tel:0415152099" class="btn btn-ghost">Call 0415 152 099</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
