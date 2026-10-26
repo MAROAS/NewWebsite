@@ -35,8 +35,16 @@ const DODO_PHONE = "0415 152 099";
   const on = cfg.enabled === true && /^https:\/\/([a-z0-9-]+\.)?dodotransport\.com\.au\/[^\s"'<>]*$/i.test(url);
   document.querySelectorAll("[data-book-online]").forEach((el) => {
     const kind = el.getAttribute("data-book-online");
-    if (!on) { if (kind !== "link") el.hidden = true; return; }
+    // "toggle": shown greyed out (no link) while off; becomes the live link when on.
+    // "offnote": shown only while off.
+    if (kind === "offnote") { el.hidden = on; return; }
+    if (!on) {
+      if (kind === "toggle") { el.removeAttribute("href"); el.setAttribute("aria-disabled", "true"); el.setAttribute("tabindex", "-1"); el.classList.add("is-disabled"); el.hidden = false; return; }
+      if (kind !== "link") el.hidden = true;
+      return;
+    }
     el.hidden = false;
+    if (kind === "toggle") { el.removeAttribute("aria-disabled"); el.removeAttribute("tabindex"); el.classList.remove("is-disabled"); }
     const link = el.tagName === "A" ? el : el.querySelector("a");
     if (link) { link.href = url; link.removeAttribute("target"); }
   });
