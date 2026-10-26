@@ -524,3 +524,10 @@ button[aria-busy="true"] { cursor: progress; opacity: .75; }
 .book-off-note{margin:0 auto 6px;max-width:52ch;font-size:.95rem;color:var(--muted,#64748b)}
 .book-note{margin:8px auto 0;max-width:52ch;font-size:.92rem;color:var(--muted,#64748b)}
 @media (max-width:560px){.book-actions{flex-direction:column;align-items:stretch}.book-actions .btn{justify-content:center;width:100%}}
+
+/* Contact DODO card (shown while the contact form is not active) */
+[data-form-panel][hidden],[data-form-fallback][hidden]{display:none !important}
+.contact-card{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.contact-card .btn{font-size:1.08rem;padding:16px 28px;gap:10px}
+.contact-card-note{margin:0;color:var(--muted,#64748b);font-size:.95rem}
+@media (max-width:560px){.contact-card .btn{width:100%;justify-content:center}}

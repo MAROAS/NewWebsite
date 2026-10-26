@@ -686,3 +686,11 @@ function initSite() {
 
   initReveal();
 }
+
+/* Form panels: a form wrapped in [data-form-panel="<switch>"] is shown only when that form is open
+ * (switch "on" and, against production, productionFormsVerified: true). Until then the matching
+ * [data-form-fallback="<switch>"] card (phone number) is shown instead of a disabled form. */
+(function showFormPanels() {
+  document.querySelectorAll("[data-form-panel]").forEach((el) => { el.hidden = !formEnabled(el.getAttribute("data-form-panel")); });
+  document.querySelectorAll("[data-form-fallback]").forEach((el) => { el.hidden = formEnabled(el.getAttribute("data-form-fallback")); });
+})();
