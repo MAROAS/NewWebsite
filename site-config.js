@@ -11,10 +11,10 @@ window.DODO_SITE_CONFIG = Object.assign({
   },
   productionFormsVerified: false,  // set to true only after the production form tests PASS
   // Book Online: while false, the Book Online buttons stay hidden and "Pre-book a ride" goes to the pre-book
-  // section on this site (phone number shown). Set to true only after old.dodotransport.com.au is live over
+  // section on this site (phone number shown). Set to true only after booking.dodotransport.com.au is live over
   // HTTPS and a real test booking has reached DODO's inbox. Only https addresses on dodotransport.com.au work.
   bookOnline: {
-    enabled: false,
-    url: "https://old.dodotransport.com.au/#bookingForm",
+    enabled: true,
+    url: "https://booking.dodotransport.com.au/#bookingForm",
   },
 }, window.DODO_SITE_CONFIG || {});
