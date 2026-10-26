@@ -25,6 +25,23 @@ const PUBLIC_KEY_HEADERS = Object.assign({ "Content-Type": "application/json", a
   /^eyJ/.test(SUPABASE_ANON_KEY) ? { Authorization: `Bearer ${SUPABASE_ANON_KEY}` } : {});
 const DODO_PHONE = "0415 152 099";
 
+/* Book Online: every element marked data-book-online opens the online booking form, in the same tab, only when
+ * site-config.js turns it on with an https address on dodotransport.com.au. Otherwise the Book Online buttons stay
+ * hidden and "Pre-book a ride" keeps going to this site's pre-book section, so no link ever points at a site
+ * that isn't live yet. */
+(function connectBookOnline() {
+  const cfg = SITE_CONFIG.bookOnline || {};
+  const url = typeof cfg.url === "string" ? cfg.url : "";
+  const on = cfg.enabled === true && /^https:\/\/([a-z0-9-]+\.)?dodotransport\.com\.au\/[^\s"'<>]*$/i.test(url);
+  document.querySelectorAll("[data-book-online]").forEach((el) => {
+    const kind = el.getAttribute("data-book-online");
+    if (!on) { if (kind !== "link") el.hidden = true; return; }
+    el.hidden = false;
+    const link = el.tagName === "A" ? el : el.querySelector("a");
+    if (link) { link.href = url; link.removeAttribute("target"); }
+  });
+})();
+
 function newRequestId() {
   if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
   const b = new Uint8Array(16);
@@ -114,9 +131,19 @@ function wireSecureForm(formEl, opts) {
     button.textContent = busy ? "Sending…" : buttonLabel;
   };
 
+  // Australian phone numbers only (booking form). Re-checked on every change, so a corrected number is never blocked.
+  const phoneEl = opts.australianPhone ? formEl.elements.namedItem("phone") : null;
+  const checkPhone = () => {
+    if (!phoneEl || typeof phoneEl.setCustomValidity !== "function") return;
+    phoneEl.setCustomValidity(phoneEl.value.trim() && !isAustralianPhone(phoneEl.value)
+      ? "Please enter an Australian phone number, for example 0412 345 678 or 07 3123 4567." : "");
+  };
+  if (phoneEl) for (const ev of ["input", "change", "blur"]) phoneEl.addEventListener(ev, checkPhone);
+
   formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (inFlight) return; // repeat click while a request is running
+    checkPhone();
     if (typeof formEl.reportValidity === "function" && !formEl.reportValidity()) return;
 
     const v = values();
@@ -191,6 +218,22 @@ function wireSecureForm(formEl, opts) {
   });
 }
 
+// Australian mobile or landline: 04xx xxx xxx, (0X) xxxx xxxx, +61 4xx xxx xxx, +61 (0)X xxxx xxxx.
+function isAustralianPhone(raw) {
+  const s = String(raw ?? "").trim();
+  if (!/^\+?[0-9 ()-]{8,30}$/.test(s)) return false;
+  let d = s.replace(/\D/g, "");
+  if (s.startsWith("+")) {
+    if (!d.startsWith("61")) return false;
+    d = d.slice(2);
+    if (d.startsWith("0")) d = d.slice(1);
+    d = "0" + d;
+  } else if (d.startsWith("61") && d.length === 11) {
+    d = "0" + d.slice(2);
+  }
+  return /^0[23478]\d{8}$/.test(d);
+}
+
 const COMMON_LABELS = {
   name: "your name",
   full_name: "your full name",
@@ -205,6 +248,7 @@ function wireBookingForm(formEl, { feedbackId }) {
     fields: ["name", "service", "pickup_address", "destination", "travel_date", "travel_time", "email", "phone",
       "pickup_lat", "pickup_lng", "destination_lat", "destination_lng"],
     storeKey: "dodo_booking_request",
+    australianPhone: true,
     switchName: "booking",
     unavailableText: "Online pre-booking is temporarily unavailable.",
     feedbackId,

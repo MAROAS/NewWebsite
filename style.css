@@ -505,3 +505,10 @@ button[aria-busy="true"] { cursor: progress; opacity: .75; }
 .ride-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
 .map-credit { margin-top: 8px; font-size: .75rem; color: var(--muted); }
 .map-credit a { color: inherit; }
+
+/* Book Online link to the online booking form */
+.book-online-cta{margin:20px 0 22px}
+.book-online-cta .btn{font-size:1.05rem;padding:14px 26px}
+.book-online-cta small{display:block;margin-top:10px;color:var(--muted,#5b6472);line-height:1.5;max-width:46ch}
+
+[data-book-online][hidden]{display:none !important}

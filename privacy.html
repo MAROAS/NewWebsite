@@ -30,7 +30,7 @@
         <li><a href="file0.html">Drive with us</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="DODO.html#contact">Contact</a></li>
-        <li><a href="DODO.html#booking" class="btn btn-primary btn-sm">Pre-book a ride</a></li>
+        <li><a href="DODO.html#booking" class="btn btn-primary btn-sm" data-book-online="link">Pre-book a ride</a></li>
       </ul>
     </nav>
   </header>
@@ -42,7 +42,7 @@
         <span class="eyebrow">Legal</span>
         <h1>Privacy Policy</h1>
         <p>How DODO collects, holds, uses, discloses and protects your personal information under Australian privacy law.</p>
-        <div class="legal-meta"><span>Version 1.0</span><span>Last updated 15 October 2026</span><span>DODO Transport Pty Ltd</span></div>
+        <div class="legal-meta"><span>Version 1.0</span><span>Last updated 26 October 2026</span><span>DODO Transport Pty Ltd</span></div>
       </div>
     </section>
 
@@ -60,7 +60,7 @@
           <li><a href="#s7">7. Messages and Communications Records</a></li>
           <li><a href="#s8">8. Payment and Financial Information</a></li>
           <li><a href="#s9">9. Ratings, Feedback, Complaints and Safety</a></li>
-          <li><a href="#s10">10–11. Sensitive &amp; Biometric Information</a></li>
+          <li><a href="#s10">10–11. Sensitive Information &amp; Biometrics</a></li>
           <li><a href="#s11">12–14. Collection, Use &amp; Sharing</a></li>
           <li><a href="#s12">15. Automated Systems and Decision-Making</a></li>
           <li><a href="#s13">16–17. Cookies, Web &amp; Marketing</a></li>
@@ -73,7 +73,7 @@
         <article class="legal-body">
         <section id="s1">
           <h2>1. Introduction</h2>
-          <p>DODO TRANSPORT PTY LTD (“DODO”, “we”, “us” or “our”) provides technology connecting people requesting transportation services (Riders) with independent drivers providing transportation services (Drivers). ABN: 37 690 944 177, Australia. Last updated: 15 October 2026.</p>
+          <p>DODO TRANSPORT PTY LTD (“DODO”, “we”, “us” or “our”) provides technology connecting people requesting transportation services (Riders) with independent drivers providing transportation services (Drivers). ABN: 37 690 944 177, Australia. Last updated: 26 October 2026.</p>
           <p>This Privacy Policy explains how DODO collects, holds, uses, discloses and protects personal information when you use the DODO Rider application, DODO Driver application, website, apply as a Driver, take a trip, contact support, or interact with DODO.</p>
           <p>DODO is committed to handling personal information consistently with applicable Australian privacy law, including the Privacy Act 1988 (Cth) and Australian Privacy Principles (APPs).</p>
           <p>Some information is necessary to provide services (account creation, booking dispatch, Driver verification, trip communication).</p>
@@ -81,7 +81,7 @@
         <section id="s2">
           <h2>2. What Personal Information DODO Collects</h2>
           <p>2.1 Account and contact information: Full name, email address, mobile telephone number, address, account identifiers, profile photograph, preferences, authentication records, and status.</p>
-          <p>2.2 Driver information: Driver’s licence, booked-hire authorisation, identity documents, vehicle registration, make/model/year/colour/plate, vehicle inspection (COI), compulsory third party and motor insurance, accreditation, onboarding status, and background check results.</p>
+          <p>2.2 Driver information: Driver’s licence, booked-hire authorisation, identity documents, vehicle registration, make/model/year/colour/plate, vehicle inspection (COI), compulsory third party and motor insurance, accreditation, onboarding status, and, where required for the Driver's authorisation, background check results.</p>
           <p>2.3 Trip and booking information: Pickup, destination, intermediate stops, coordinates, route, distance, duration, ETAs, Driver live location while available or en route, timestamps, fares, tolls, tips, cancellations, ratings, and transaction history.</p>
         </section>
         <section id="s3">
@@ -97,9 +97,8 @@
           <h2>5. Device Permissions</h2>
           <ul>
             <li><strong>Location</strong> — Used for bookings, navigation, Driver tracking, pickup/destination matching, safety and fraud prevention.</li>
-            <li><strong>Camera</strong> — Used to capture profile photos, identity documents, or vehicle inspection certificates for verification.</li>
-            <li><strong>Photo library</strong> — Used to upload existing documents or photos.</li>
-            <li><strong>Microphone</strong> — Used only where specific audio features are enabled and authorized.</li>
+            <li><strong>Camera and photo library</strong> — Used in the DODO Driver app to take or upload a profile photo, identity documents and vehicle certificates for verification.</li>
+            <li><strong>Microphone</strong> — The DODO apps do not use your microphone.</li>
             <li><strong>Notifications</strong> — Used for trip requests, dispatch updates, booking events, earnings, support and safety alerts.</li>
             <li><strong>Phone functionality</strong> — Used to trigger phone dialler for masked, privacy-protected calling between Rider and Driver.</li>
           </ul>
@@ -125,9 +124,10 @@
           <p>We collect ratings, compliments, complaints, incident reports, evidence voluntarily supplied, lost property claims, and safety reports to maintain platform quality and safety.</p>
         </section>
         <section id="s10">
-          <h2>10–11. Sensitive &amp; Biometric Information</h2>
-          <p>Sensitive information (criminal history check status, accessibility needs, health data in incident reports) receives enhanced protection and is collected only where lawful and consented.</p>
-          <p>Biometric verification: DODO provides separate clear notices explaining biometric processing, third-party processors, retention, and consent before facial verification is activated.</p>
+          <h2>10–11. Sensitive Information &amp; Biometrics</h2>
+          <p>Sensitive information (for example criminal history check status, accessibility needs, or health information in an incident report) is collected only where the law allows it and, where required, with your consent, and access to it is restricted.</p>
+          <p>Biometrics: DODO does not currently collect biometric information, such as facial images for identity verification. If DODO introduces biometric verification, we will tell the people affected before it starts and ask for their consent where the law requires it.</p>
+          <p>If you choose to unlock the DODO Driver app with your phone's fingerprint or face unlock, that check happens on your phone. DODO does not receive your fingerprint or face data.</p>
         </section>
         <section id="s11">
           <h2>12–14. Collection, Use &amp; Sharing</h2>
@@ -137,23 +137,46 @@
         </section>
         <section id="s12">
           <h2>15. Automated Systems and Decision-Making</h2>
-          <p>Automated systems assist with driver matching, route estimation, fare calculation, eligibility checks, and fraud detection.</p>
-          <p>Maintains transparency and processes consistent with Australian Privacy Principles (including amendments concerning decisions made with computer programs).</p>
+          <p>Some decisions are made automatically by our systems:</p>
+          <ul>
+            <li>matching a Rider's request with an available nearby Driver, using the pickup location and Drivers' locations and availability;</li>
+            <li>calculating the fare shown before a trip, using the trip's distance and estimated time; and</li>
+            <li>pausing a Driver's ability to go online after 12 hours online in a day, using the Driver's online time.</li>
+          </ul>
+          <p>If you think an automated decision about you is wrong, call <a href="tel:0415152099">0415 152 099</a> and a member of our team will review it.</p>
         </section>
         <section id="s13">
           <h2>16–17. Cookies, Web &amp; Marketing</h2>
-          <p>Cookies and local storage are used for session security and performance. Direct marketing is sent only where consented and includes a functional unsubscribe option honored within 5 working days.</p>
+          <p>The DODO apps and website use device and browser storage for security and to make features work. For example, the website keeps a temporary identifier in your browser's session storage so a form is not submitted twice. The DODO website does not use advertising or analytics cookies.</p>
+          <p>We send direct marketing only where you have agreed to receive it. Every marketing message includes a way to unsubscribe, and we act on unsubscribe requests within the time required by the Spam Act 2003 (Cth).</p>
         </section>
         <section id="s14">
           <h2>18–20. Service Providers, Overseas Disclosure &amp; Authorities</h2>
-          <p>Providers include Supabase, Stripe, Twilio, Google Maps, and cloud infrastructure. Personal information may be processed overseas (such as the United States) by authorized infrastructure providers in compliance with APP 8.</p>
-          <p>Disclosed to regulators (Queensland Transport and Main Roads), law enforcement, courts, or insurers where required by law or for serious safety investigations.</p>
+          <p>Service providers that handle personal information for DODO include Supabase (database and app hosting), Stripe (payments), Twilio (call masking, where available) and Google (maps in the DODO apps).</p>
+          <p><strong>Our website.</strong> When you visit www.dodotransport.com.au, your browser connects to the following services. They receive your device's IP address and basic browser information as part of normal web requests:</p>
+          <ul>
+            <li><strong>GitHub Pages</strong> (GitHub, Inc.) hosts the website.</li>
+            <li><strong>Google Fonts</strong> (Google) supplies the website's typeface.</li>
+            <li><strong>jsDelivr</strong> supplies the map software (MapLibre) used on the home page.</li>
+            <li><strong>OpenFreeMap</strong> supplies the map images on the home page, based on OpenStreetMap data.</li>
+            <li><strong>OpenStreetMap Nominatim</strong> looks up the street address of a point you choose. It is used only if you tap the map or the location button. Your device's location is used only if you tap the location button and allow it in your browser.</li>
+            <li><strong>Website forms</strong> (pre-booking, contact and driver application), when they are open, send your details to DODO's systems hosted by Supabase, and confirmation emails are sent through <strong>Resend</strong>.</li>
+            <li><strong>Online booking form</strong> at old.dodotransport.com.au, when available: your details are emailed to DODO through <strong>FormSubmit</strong> (formsubmit.co), a third-party form service. Its own booking privacy notice applies.</li>
+            <li><strong>TikTok</strong> receives information only if you follow our link to TikTok.</li>
+          </ul>
+          <p><strong>Overseas.</strong> DODO's main database is hosted by Supabase in South Korea (Amazon Web Services, Seoul region). Several other service providers, including Stripe, Twilio, Google, GitHub and Resend, are based in the United States and may handle information there or in other countries where they operate. Where we disclose personal information overseas, we take the steps required by Australian Privacy Principle 8.</p>
+          <p>We disclose personal information to government bodies where the law requires it, including:</p>
+          <ul>
+            <li>the Queensland Department of Transport and Main Roads: booking records when requested, regular reports containing details of Drivers, vehicles and trips, and a notice if we end a Driver's arrangement because of serious safety misconduct; and</li>
+            <li>the Australian Taxation Office: twice-yearly reports of Drivers' identity, ABN and payment details under the Sharing Economy Reporting Regime.</li>
+          </ul>
+          <p>We may also disclose information to police, courts or insurers where the law requires or permits it, including for serious safety investigations.</p>
         </section>
         <section id="s15">
           <h2>21–23. Storage, Security, Data Breaches &amp; Retention</h2>
-          <p>Protected by AES-256 encryption, access controls, role-based permissions, and database security.</p>
-          <p>DODO maintains response procedures under the Australian Notifiable Data Breaches (NDB) scheme.</p>
-          <p>Retained as long as necessary for services, tax records, disputes, and compliance. Deletion requests do not override mandatory legal retention duties.</p>
+          <p>We protect personal information with security measures including encrypted connections (HTTPS/TLS) to our apps, website and database services, access controls, role-based permissions and database access rules.</p>
+          <p>If a data breach is likely to result in serious harm, we will notify the affected individuals and the Office of the Australian Information Commissioner as required by the Notifiable Data Breaches scheme.</p>
+          <p>We keep personal information only for as long as we need it for the purposes in this policy or as the law requires. For example, Queensland law requires booking records to be kept for at least 2 years, and tax and financial records must be kept for the periods required by tax and corporations law. When we no longer need information, we take reasonable steps to delete or de-identify it. A deletion request does not override a legal duty to keep records.</p>
         </section>
         <section id="s16">
           <h2>24–27. Access, Correction, Choices &amp; Account Deletion</h2>
@@ -203,7 +226,7 @@
           <ul>
             <li><a href="about.html">About DODO</a></li>
             <li><a href="file0.html">Become a driver</a></li>
-            <li><a href="DODO.html#booking">Pre-book a ride</a></li>
+            <li><a href="DODO.html#booking" data-book-online="link">Pre-book a ride</a></li>
             <li><a href="DODO.html#safety">Fares &amp; payments</a></li>
             <li><a href="DODO.html#contact">Contact us</a></li>
             <li><a href="tel:0415152099">0415 152 099</a></li>
@@ -224,6 +247,7 @@
     </div>
   </footer>
 
+  <script src="site-config.js"></script>
   <script src="app.js"></script>
   <script>
     initSite();

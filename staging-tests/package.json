@@ -1,6 +1,0 @@
-{
-  "name": "dodo-staging-forms-test",
-  "private": true,
-  "description": "DODO-Staging website form tests. Run only after approval (docs/STAGING-RUNBOOK.md).",
-  "dependencies": { "puppeteer-core": "23.11.1" }
-}
