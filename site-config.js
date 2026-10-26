@@ -21,7 +21,7 @@ window.DODO_SITE_CONFIG = Object.assign({
   // relay is deployed and its tests pass. Only a https://script.google.com/macros/s/.../exec address works.
   // When on, the Driver application form uses the relay and no longer needs the Supabase settings above.
   driverApplicationRelay: {
-    enabled: false,
-    url: "",
+    enabled: true,
+    url: "https://script.google.com/macros/s/AKfycbwWaRuntXOtNtszHlua0bJ-bY3dyLhcqomZOriN8gRdpkKTmarUtFD-dwMAO_2I7-6zFQ/exec",
   },
 }, window.DODO_SITE_CONFIG || {});
