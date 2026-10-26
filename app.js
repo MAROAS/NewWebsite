@@ -98,6 +98,7 @@ function showFormUnavailable(formEl, feedbackId, message) {
 // the production form tests pass. Until then visitors see the phone number, never a failing form.
 const PRODUCTION_SUPABASE_URL = "https://gobsccsryhavpwqpiujz.supabase.co";
 function formEnabled(switchName) {
+  if (switchName === "driverApplication" && driverRelayUrl()) return true;
   if ((SITE_CONFIG.forms || {})[switchName] !== "on") return false;
   return SUPABASE_URL.replace(/\/+$/, "") !== PRODUCTION_SUPABASE_URL || SITE_CONFIG.productionFormsVerified === true;
 }
@@ -312,7 +313,96 @@ function wireContactForm(formEl, { feedbackId }) {
   });
 }
 
+// Driver application relay: on only when site-config.js sets driverApplicationRelay.enabled to true with a
+// Google Apps Script web app address. Anything else keeps the existing behaviour.
+function driverRelayUrl() {
+  const cfg = SITE_CONFIG.driverApplicationRelay || {};
+  const url = typeof cfg.url === "string" ? cfg.url.trim() : "";
+  return cfg.enabled === true && /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(url) ? url : "";
+}
+
+// Sends the application as a plain form post (no custom headers, so the browser makes a simple request that
+// Google Apps Script accepts). The relay emails DODO; nothing is saved, so the page never says "saved".
+function wireDriverRelayForm(formEl, { feedbackId, relay }) {
+  const feedback = document.getElementById(feedbackId);
+  const button = formEl.querySelector('button[type="submit"]');
+  const buttonLabel = button ? button.textContent : "";
+  const notice = document.querySelector("[data-driver-relay-notice]");
+  if (notice) notice.hidden = false;
+  const phoneEl = formEl.elements.namedItem("phone");
+  const checkPhone = () => {
+    if (!phoneEl || typeof phoneEl.setCustomValidity !== "function") return;
+    phoneEl.setCustomValidity(phoneEl.value.trim() && !isAustralianPhone(phoneEl.value)
+      ? "Please enter an Australian phone number, for example 0412 345 678 or 07 3123 4567." : "");
+  };
+  if (phoneEl) for (const ev of ["input", "change", "blur"]) phoneEl.addEventListener(ev, checkPhone);
+  // No licence, card or other ID numbers through the public form (8 or more digits in a row, spaces or dashes allowed).
+  const ID_NUMBER = /(?:\d[\s-]?){8,}/;
+  const idFields = ["full_name", "license_length", "vehicle_details"].map((n) => formEl.elements.namedItem(n)).filter(Boolean);
+  const checkIds = () => {
+    for (const el of idFields) {
+      if (typeof el.setCustomValidity !== "function") continue;
+      el.setCustomValidity(ID_NUMBER.test(el.value)
+        ? "Please don't include licence, card or other ID numbers. You'll provide documents securely in the DODO Driver app." : "");
+    }
+  };
+  for (const el of idFields) for (const ev of ["input", "change", "blur"]) el.addEventListener(ev, checkIds);
+  const fields = ["full_name", "email", "phone", "state", "home_state", "license_length", "has_abn", "vehicle_details"];
+  let inFlight = false;
+  const setBusy = (busy) => {
+    inFlight = busy;
+    if (!button) return;
+    button.disabled = busy;
+    button.setAttribute("aria-busy", busy ? "true" : "false");
+    button.textContent = busy ? "Sending…" : buttonLabel;
+  };
+  formEl.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (inFlight) return; // repeat tap while sending
+    checkPhone();
+    checkIds();
+    if (typeof formEl.reportValidity === "function" && !formEl.reportValidity()) return;
+    const data = new FormData(formEl);
+    const body = new URLSearchParams({ form: "driver" });
+    for (const f of fields) body.set(f, String(data.get(f) || "").trim());
+    body.set("company_website", String(data.get("company_website") || ""));
+    setBusy(true);
+    setFormFeedback(feedback, "pending", "Sending your application…");
+    let reply = null, timedOut = false;
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => { timedOut = true; controller.abort(); }, FORM_TIMEOUT_MS) : null;
+    try {
+      const res = await fetch(relay, { method: "POST", body, signal: controller ? controller.signal : undefined });
+      reply = await res.json().catch(() => null);
+    } catch (err) {
+      console.error("application failed:", err);
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+    if (reply && reply.ok === true) {
+      const driveState = body.get("state");
+      const outsideQld = driveState && driveState !== "QLD"
+        ? " DODO currently takes trips in Queensland only, so this registers your interest in driving in " + escapeHtml(driveState) + ". You can't accept trips there until DODO operates in that state and has approved you for it."
+        : "";
+      setFormFeedback(feedback, "success", "<strong>Thank you. Your application has been sent to DODO.</strong> " +
+        "This isn't an approval yet." + outsideQld + " DODO's driver team will contact you about next steps, including uploading your documents securely in the DODO Driver app. Please don't email documents to us.");
+      formEl.reset();
+      setBusy(false);
+      return;
+    }
+    const msg = reply && typeof reply.error === "string"
+      ? `${escapeHtml(reply.error)} Or call us on ${DODO_PHONE}.`
+      : timedOut
+        ? `We couldn't confirm that your application reached us. Please try again in a minute, or call us on ${DODO_PHONE}.`
+        : `We couldn't reach DODO. Check your internet connection and try again, or call us on ${DODO_PHONE}.`;
+    setFormFeedback(feedback, "error", msg);
+    setBusy(false);
+  });
+}
+
 function wireDriverApplicationForm(formEl, { feedbackId }) {
+  const relay = driverRelayUrl();
+  if (formEl && relay) return wireDriverRelayForm(formEl, { feedbackId, relay });
   wireSecureForm(formEl, {
     endpoint: functionUrl("website-driver-application", SITE_CONFIG.driverApplicationEndpoint),
     fields: ["full_name", "email", "phone", "state", "home_state", "license_length", "has_abn", "vehicle_details"],

@@ -17,4 +17,11 @@ window.DODO_SITE_CONFIG = Object.assign({
     enabled: true,
     url: "https://booking.dodotransport.com.au/#bookingForm",
   },
+  // Driver applications through DODO's driver application relay (Google Apps Script). It stays off until the
+  // relay is deployed and its tests pass. Only a https://script.google.com/macros/s/.../exec address works.
+  // When on, the Driver application form uses the relay and no longer needs the Supabase settings above.
+  driverApplicationRelay: {
+    enabled: false,
+    url: "",
+  },
 }, window.DODO_SITE_CONFIG || {});

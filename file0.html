@@ -74,7 +74,7 @@
         <div class="tab-panel" role="tabpanel" id="st-QLD" aria-labelledby="st-tab-QLD">
           <div class="req-card">
             <h3><svg width="22" height="22" style="color:var(--orange)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 10h4M14 14h4M5 17c.5-1.5 1.7-2 3-2s2.5.5 3 2"/></svg> Driver &middot; Queensland</h3>
-            <ul class="check-list"><li>Queensland Driver's Authorisation (DA badge)</li><li>Valid Queensland driver licence (front &amp; back)</li><li>National Police Check certificate (issued in the last 12 months)</li><li>Queensland driving history statement</li><li>Australian Business Number (ABN), registered for GST</li><li>Training modules: anti-touting, driver safety, preventing conflict, and assistance animals</li><li>Acceptance of the DODO Driver Partner Terms</li></ul>
+            <ul class="check-list"><li>Queensland Driver's Authorisation (DA badge). TMR checks your criminal history, traffic history and medical fitness when you apply for it.</li><li>Valid Queensland driver licence (front &amp; back)</li><li>Australian Business Number (ABN), registered for GST</li><li>Training modules: anti-touting, driver safety, preventing conflict, and assistance animals</li><li>Acceptance of the DODO Driver Partner Terms</li></ul>
           </div>
           <div class="req-card">
             <h3><svg width="22" height="22" style="color:var(--green)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2.7-3.6A2 2 0 0 0 13.7 6H8.3a2 2 0 0 0-1.6.8L4 10l-2.5 1.1C.7 11.3 0 12.1 0 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></svg> Vehicle &middot; Queensland</h3>
@@ -119,18 +119,20 @@
                 <option value="NT">Northern Territory (NT)</option>
               </select></div>
               <p class="field full form-note" id="d_state_note">DODO currently takes trips in Queensland only. Drivers in other states can register now, but can&rsquo;t accept trips until DODO is approved to operate in that state and has approved you for it. Where you live doesn&rsquo;t count as approval.</p>
-              <div class="field"><label for="d_licence">How long have you held your licence?</label><input type="text" id="d_licence" name="license_length" placeholder="e.g. 3 years" maxlength="50"></div>
-              <div class="field"><label for="d_abn">Do you have an ABN?</label><select id="d_abn" name="has_abn">
-                <option value="no">No</option>
+              <div class="field"><label for="d_licence">How long have you held your licence?</label><input type="text" id="d_licence" name="license_length" placeholder="e.g. 3 years" maxlength="50" required></div>
+              <div class="field"><label for="d_abn">Do you have an ABN?</label><select id="d_abn" name="has_abn" required>
+                <option value="" selected disabled>Select</option>
                 <option value="yes">Yes</option>
+                <option value="no">No</option>
               </select></div>
-              <div class="field full"><label for="d_vehicle">Vehicle details</label><textarea id="d_vehicle" name="vehicle_details" placeholder="Make, model, year" maxlength="500"></textarea></div>
+              <div class="field full"><label for="d_vehicle">Vehicle details</label><textarea id="d_vehicle" name="vehicle_details" placeholder="Make, model and year, or &quot;no vehicle yet&quot;" maxlength="500" required></textarea></div>
               <p class="field full form-note" id="d_docs_note">Please don't type licence numbers or attach documents here. If we take your application further, you'll upload your licence, accreditation and vehicle documents securely in the DODO Driver app.</p>
             </div>
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Submit application</button>
               <div id="driver-feedback" class="feedback" role="status" aria-live="polite"></div>
-              <p class="form-note">By submitting, you agree to our <a href="terms.html">Terms &amp; Conditions</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+              <p class="form-note">Our <a href="privacy.html">Privacy Policy</a> explains how DODO handles your application. Driving with DODO is subject to our <a href="terms.html">Terms &amp; Conditions</a>.</p>
+              <p class="form-note" data-driver-relay-notice hidden>DODO TRANSPORT PTY LTD collects these details to assess your application and contact you about driving with DODO. If you don't give them, we can't consider your application. When you submit this form, your details are sent to DODO's driver application relay (a Google Apps Script service run by Google), which emails them to DODO's inbox through FormSubmit (formsubmit.co), a third-party form service. These services may handle your details outside Australia. Your details are not stored on this website, and the relay doesn't keep a copy. Our <a href="privacy.html">Privacy Policy</a> explains how to access or correct your information and how to make a complaint.</p>
             </div>
           </form>
         </div>
