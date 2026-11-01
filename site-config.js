@@ -24,4 +24,11 @@ window.DODO_SITE_CONFIG = Object.assign({
     enabled: true,
     url: "https://script.google.com/macros/s/AKfycbwWaRuntXOtNtszHlua0bJ-bY3dyLhcqomZOriN8gRdpkKTmarUtFD-dwMAO_2I7-6zFQ/exec",
   },
+  // Account deletion requests (delete-account.html) through DODO's account deletion relay (Google Apps Script,
+  // deploy/apps-script/account-deletion-relay). Off until the relay is deployed and its tests pass; while off the
+  // page shows the phone number instead of the form. Only a https://script.google.com/macros/s/.../exec address works.
+  accountDeletionRelay: {
+    enabled: false,
+    url: "",
+  },
 }, window.DODO_SITE_CONFIG || {});
